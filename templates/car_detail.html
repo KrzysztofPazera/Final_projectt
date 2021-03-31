@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="darkTable">
+<thead>
+<tr>
+    <th>Model</th>
+    <th>Marka</th>
+    <th>Silnik</th>
+    <th></th>
+
+</tr>
+</thead>
+{% for car in cars %}
+
+
+<tbody>
+<tr>
+    <td>{{ car.name }}</td>
+    <td>{{ car.brand }}</td>
+    <td>{{ car.engine }}</td>
+    <td><a href="{% url 'part_detail' %}" Części</a></td>
+
+
+
+</tr>
+</tbody>
+{#    <p><a href="edit_car/">Edytuj</a></p>#}
+{#    </tr>#}
+</table>
+        {% endfor %}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="darkTable">
+<thead>
+<tr>
+    <th>Nazwa</th>
+    <th>Model samochodu</th>
+    <th>Id produktu</th>
+    <th>Kategoria</th>
+    <th>Cena Netto(PLN)</th>
+
+</tr>
+</thead>
+{% for part in parts %}
+
+
+<tbody>
+<tr>
+    <td>{{ part.name }}</td>
+    <td>{{ part.car_model }}</td>
+    <td>{{ part.id_number_of_product }}</td>
+    <td>{{ part.category }}</td>
+    <td>{{ part.price }}</td>
+
+
+</tr>
+</tbody>
+{#    <p><a href="edit_part/">Edytuj</a></p>#}
+    </tr>
+</table>
+        {% endfor %}
+
+
+
+
+{% endblock %}

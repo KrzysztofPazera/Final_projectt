@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="darkTable">
+<thead>
+<tr>
+    <th>Model</th>
+    <th>Marka</th>
+    <th>Silnik</th>
+
+</tr>
+</thead>
+{% for car in cars %}
+
+
+<tbody>
+<tr>
+    <td><a href="{{ car.get_detail_url }}" >{{ car.name }}</a></td>
+    <td>{{ car.brand }}</td>
+    <td>{{ car.engine }}</td>
+
+</tr>
+</tbody>
+        {% endfor %}
+</tr>
+</table>
+
+{% endblock %}

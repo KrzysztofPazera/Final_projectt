@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="darkTable">
+<thead>
+<tr>
+    <th>Marka</th>
+    <th>Ilość modeli</th>
+
+</tr>
+</thead>
+{% for obj in objects_list %}
+
+
+<tbody>
+<tr>
+    <td><a href="{{ obj.get_detail_url }}" >{{ obj.name }}</a></td>
+
+    <td></td>
+
+</tr>
+</tbody>
+        {% endfor %}
+</tr>
+</table>
+
+{% endblock %}

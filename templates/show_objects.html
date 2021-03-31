@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <ul>
+        {% for obj in objects_list %}
+            <table>
+                <tr><td><a href="{{ obj.get_detail_url }}">{{ obj }}</a></td></tr>
+            </table>
+        {% endfor %}
+    </ul>
+</form>
+    </p>
+{%  endblock %}
