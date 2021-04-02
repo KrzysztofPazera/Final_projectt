@@ -5,6 +5,8 @@
 <tr>
     <th>Model</th>
     <th>Marka</th>
+    <th>Rok produkcji</th>
+    <th>Generacja</th>
     <th>Silnik</th>
     <th></th>
 
@@ -17,15 +19,17 @@
 <tr>
     <td>{{ car.name }}</td>
     <td>{{ car.brand }}</td>
+    <td>{{ car.year }}</td>
+    <td>{{ car.generacion }}</td>
     <td>{{ car.engine }}</td>
-    <td><a href="{% url 'part_detail' %}" Części</a></td>
+    <td>Części</td>
 
 
 
 </tr>
 </tbody>
-{#    <p><a href="edit_car/">Edytuj</a></p>#}
-{#    </tr>#}
+    <p><a href="edit_car/">Edytuj</a></p>
+
 </table>
         {% endfor %}
 

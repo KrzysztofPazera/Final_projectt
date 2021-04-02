@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+{% block content %}
+    <form method="POST">
+            {% csrf_token %}
+    <table class="darkTable">
+<thead>
+<tr>
+    <th>Nazwa</th>
+    <th>Model samochodu</th>
+    <th>Id produktu</th>
+    <th>Kategoria</th>
+    <th>Cena Netto(PLN)</th>
+
+</tr>
+</thead>
+
+
+
+<tbody>
+<tr>
+    <td><input type="text" name="name" value="{{ parts.name }}"></td>
+    <td><select name="car_model">
+                {% for car in cars %}
+                    {% if car == parts.car_model %}
+                        <option selected value="{{ car.id }}">{{ car }}</option>
+                    {% else %}
+                        <option value="{{ car.id}}">{{ car }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select></td>
+    <td><input type="text" name="parts_id" value="{{ parts.id_number_of_product }}"></td>
+    <td><select name='category'>
+                {% for category in categorys %}
+                    {% if category == part.category %}
+                        <option selected value="{{ category.id }}">{{ category }}</option>
+                    {% else %}
+                        <option value="{{ category.id}}">{{ category }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select></td>
+    <td><input type="text" name="price" value="{{ parts.price }}"></td>
+
+
+</tr>
+</tbody>
+
+</tr>
+</table>
+<input type="submit" value="Edytuj">
+    </form>
+{% endblock %}

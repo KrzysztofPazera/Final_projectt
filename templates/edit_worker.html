@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <table class="darkTable">
+            <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Type pracy</th>
+                <th>Cena (PLN/h)</th>
+                <th>Opis wykonywanej pracy</th>
+
+            </tr>
+            </thead>
+
+
+            <tbody>
+            <tr>
+                <td><input type="text" name="name" value="{{ workers.name }}"></td>
+                <td><select name="type">
+                    {% for type in types %}
+                        {% if type == workers.type %}
+                            <option selected value="{{ type.id }}">{{ type }}</option>
+                        {% else %}
+                            <option value="{{ type.id }}">{{ type }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select></td>
+                <td><input type="number" name="price" value="{{ workers.price }}"></td>
+                <td><input type="text" name="work" value="{{ workers.work }}"></td>
+
+
+            </tr>
+            </tbody>
+
+            </tr>
+        </table>
+        <input type="submit" , value="Edytuj">
+    </form>
+{% endblock %}

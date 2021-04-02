@@ -8,6 +8,7 @@
     <th>Id produktu</th>
     <th>Kategoria</th>
     <th>Cena Netto(PLN)</th>
+    <th></th>
 
 </tr>
 </thead>
@@ -16,12 +17,12 @@
 
 <tbody>
 <tr>
-    <td><a href="{{ part.get_detail_url }}" >{{ part.name }}</a></td>
+    <td>{{ part.name }}</td>
     <td>{{ part.car_model }}</td>
     <td>{{ part.id_number_of_product }}</td>
     <td>{{ part.category }}</td>
     <td>{{ part.price }}</td>
-
+    <td><a href="{{ part.get_detail_url }}">Edytuj</a></td>
 
 </tr>
 </tbody>

@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Baza_Samochodow import views
+from Car_Base import views
+from Workers import views_workers
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,5 +33,11 @@ urlpatterns = [
     path('parts_category_list/parts_list/<int:id_c>/<int:id>/edit_part/', views.PartsDetailEditeView.as_view(), name='part_edit/'),
     path('car_brand_list/car_models/<int:id_m>/<int:id>/', views.CarDetailView.as_view(),
          name='part_edit/'),
+    path('car_brand_list/car_models/<int:id_m>/<int:id>/edit_car/', views.CarEditView.as_view(), name = 'car_edit'),
+    path('add_type_work/', views_workers.TypeFormView.as_view(), name='add_type_work'),
+    path('type_work_list/', views_workers.TypeWorkListView.as_view(), name='type_work_list'),
+    path('add_workers/', views_workers.WorkersFormView.as_view(), name='add_worker'),
+    path('type_work_list/<int:id>/', views_workers.WorkersListByTypeView.as_view(), name='worker_list_by_type'),
+    path('type_work_list/<int:id_t>/<int:id>/edit_work/', views_workers.WorkersEditView.as_view(), name='worker_edit'),
 
 ]
