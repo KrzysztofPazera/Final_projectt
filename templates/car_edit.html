@@ -1,47 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
     <form method="POST">
-                {% csrf_token %}
-    <table class="darkTable">
-<thead>
-<tr>
-    <th>Model</th>
-    <th>Marka</th>
-    <th>Rok produkcji</th>
-    <th>Generacja</th>
-    <th>Silnik</th>
-    <th></th>
-
-</tr>
-</thead>
+        {% csrf_token %}
+        <table class="darkTable">
+            <thead>
+            <tr>
+                <th>Model</th>
+                <th>Marka</th>
+                <th>Rok produkcji</th>
+                <th>Generacja</th>
+                <th>Silnik</th>
 
 
-
-<tbody>
-<tr>
-    <td><input type="text" value="{{ cars.name }}" name ="name"></td>
-    <td><select name="car_brand">
-                {% for brand in brands %}
-                    {% if brand == cars.brand %}
-                        <option selected value="{{ brand.id }}">{{ brand }}</option>
-                    {% else %}
-                        <option value="{{ brand.id}}">{{ brand }}</option>
-                    {% endif %}
-                {% endfor %}
-            </select></td>
-    <td><input type="number" name="year" value="{{ cars.year }}"></td>
-    <td><input type="text" name="generacion" value="{{ cars.generacion }}"></td>
-    <td><input type="text" name="engine" value="{{ cars.engine }}"></td>
-    <td>Części</td>
+            </tr>
+            </thead>
 
 
+            <tbody>
+            <tr>
+                <td><input type="text" value="{{ cars.name }}" name="name"></td>
+                <td><select name="car_brand">
+                    {% for brand in brands %}
+                        {% if brand == cars.brand %}
+                            <option selected value="{{ brand.id }}">{{ brand }}</option>
+                        {% else %}
+                            <option value="{{ brand.id }}">{{ brand }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select></td>
+                <td><input type="number" name="year" value="{{ cars.year }}"></td>
+                <td><input type="text" name="generacion" value="{{ cars.generacion }}"></td>
+                <td><input type="text" name="engine" value="{{ cars.engine }}"></td>
 
-</tr>
-</tbody>
-{#    <p><a href="edit_car/">Edytuj</a></p>#}
-{#    </tr>#}
-</table>
-<input type="submit" value="Edytuj">
+
+            </tr>
+            </tbody>
+
+        </table>
+        <input type="submit" value="Edytuj">
+        <input type=button value="Wstecz" onClick="javascript:history.go(-1);">
+
     </form>
 
 

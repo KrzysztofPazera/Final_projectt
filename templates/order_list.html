@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main" class="container">
+        <section>
+            <div class="row">
+                <hr/>
+                <table class="darkTable">
+                    <thead>
+                    <tr class="text-center">
+                        <th>no.</th>
+                        <th>Nazwa</th>
+                        <th>Model samochodu</th>
+                        <th>Id produktu</th>
+                        <th>Kategoria</th>
+                        <th>Cena Netto(PLN)</th>
+                        <th>Quantiti</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in order_iteam %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>
+                                {{ item.product }}
+                                            <span class="pull-right">
+                                              <a href="{% url 'delete_item' item.id %}"  class="text-danger" >
+                                                <i class="fas fa-trash"></i>
+                                              </a>
+                                            </span>
+                            </td>
+                            <td>{{ item.product.car_model }}</td>
+                            <td>{{ item.product.id_number_of_product }}</td>
+                            <td>{{ item.product.category }}</td>
+                            <td>{{ item.product.price }}</td>
+                            <td>{{ item.quantiti }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan=3> You have not added any items yet.</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        {#        {% if order_iteam.get_cart_total != None %}#}
+                        <td colspan=5>
+                            <strong class="pull-right">Order Total:</strong>
+                        </td>
+
+                        <td colspan=1>
+                            PLN <strong>{{ order_iteam.get_cart_total }}</strong>
+                        </td>
+                        <td colspan=1>
+                            <strong>{{ order_iteam.get_quantiti_total }}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=1>
+                            <a href="{% url 'car_filter' %}" class="btn btn-warning pull-left">Wróć do listy</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+    </main>
+{% endblock %}

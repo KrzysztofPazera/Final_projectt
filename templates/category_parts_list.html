@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="darkTable">
+        <thead>
+        <tr>
+            <th>Kategoria</th>
+            <th>Ilość modeli</th>
+
+        </tr>
+        </thead>
+
+
+
+            <tbody>
+                    {% for obj in objects_list %}
+            <tr>
+                <td><a href="{{ obj.get_detail_url }}">{{ obj }}</a></td>
+
+                <td>{{ q }}</td>
+
+            </tr>
+                    {% endfor %}
+            </tbody>
+
+        </tr>
+    </table>
+            <input type=button value="Wstecz" onClick="javascript:history.go(-1);">
+
+    {#<a href="javascript:history.back()">Wstecz</a>#}
+{% endblock %}

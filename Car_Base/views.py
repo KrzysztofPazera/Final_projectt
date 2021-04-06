@@ -27,13 +27,19 @@ class CarBrandListView(View):
         objects = CarBrand.objects.all()
         name = request.GET.get('data')
         cars = CarModel.objects.all()
+        # list= {}
         # for obj in objects:
-        #     id=obj.id
-        #     q = CarModel.objects.filter(brand_id=id)
-        #     print(len(q))
+        #     brand_id = obj.id
+        #     brand_name=obj.name
+        #     print(brand_name)
+        #     cars = CarModel.objects.filter(brand=brand_id).count()
+        #     print(cars)
+        #     list[brand_name]=cars
+        #     print(list)
+
         if name is not None:
             objects = objects.filter(name__incontains=name)
-        return render(request, 'car_brad_list.html', {'objects_list': objects, 'cars': cars})
+        return render(request, 'car_brad_list.html', {'objects_list': objects})
 
 
 # Widok dodawania modelu samochodu
@@ -74,8 +80,10 @@ class CarPartsFormView(CreateView):
 # Widok tworzacy liste kategorii
 class PartsCategoryListView(View):
     def get(self, request):
+
         objects = PartsCategory.objects.all()
-        return render(request, 'show_objects.html', {'objects_list': objects})
+
+        return render(request, 'category_parts_list.html', {'objects_list': objects})
 
 
 # Widok tworzacy liste czesci

@@ -13,14 +13,16 @@
 
 <tbody>
 <tr>
-    <td><a href="{{ obj.get_detail_url }}" >{{ obj.name }}</a></td>
+    <td><a href="{{ obj.get_detail_url }}" >{{ obj }}</a></td>
 
-    <td></td>
+    <td>{{ q }}</td>
 
 </tr>
 </tbody>
         {% endfor %}
 </tr>
 </table>
+            <input type=button value="Wstecz" onClick="javascript:history.go(-1);">
 
+{#<a href="javascript:history.back()">Wstecz</a>#}
 {% endblock %}

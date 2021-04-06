@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Repair_estimate',
     'Car_Base',
     'Workers',
+    'Account',
 
 
 

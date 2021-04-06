@@ -4,8 +4,7 @@ from django.views import View
 from django.views.generic import CreateView
 
 from Workers.forms import TypesForms, WorkersForms
-from Workers.models_workers import Types, Workers
-
+from Workers.models import Types, Workers
 
 # Widok tworzacy typ pracownika
 class TypeFormView(CreateView):

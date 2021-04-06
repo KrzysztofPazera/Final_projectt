@@ -1,7 +1,20 @@
 /*============================*/
 /* General
 /*============================*/
+.signed-in .portlet-login {
+  margin: 0px;
+}
+
+.signed-out .portlet-login {
+  margin: 10px;
+}
+
+.div_1 {
+    background-color: #EBEBEB;
+}
+
 html, body {
+    margin-top: 5rem;
     background: #fff;
     font: 100% helvetica, arial, sans-serif;
     margin: 0;
@@ -14,6 +27,8 @@ html, body {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    padding: 10px;
+    margin-top: 20px;
 }
 
 #header {
@@ -39,6 +54,10 @@ h2 {
     font-size: 22px;
     font-weight: normal;
     margin: 20px 0 0 0;
+}
+
+h3 {
+    color: white;
 }
 
 a {
@@ -76,7 +95,7 @@ a:hover {
     background-image: -moz-linear-gradient(bottom, #222222 0%, #555555 100%);
     background-image: -webkit-linear-gradient(bottom, #222222 0%, #555555 100%);
     background-image: -ms-linear-gradient(bottom, #222222 0%, #555555 100%);
-    background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0, #222222),color-stop(1, #555555));
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #222222), color-stop(1, #555555));
     background-image: linear-gradient(bottom, #222222 0%, #555555 100%);
     float: left;
     position: relative;
@@ -88,6 +107,7 @@ a:hover {
     -moz-border-radius: 3px 0 0 3px;
     border-radius: 3px 0 0 3px;
 }
+
 #nav li:last-child, #nav li:last-child a {
     -webkit-border-radius: 0 3px 3px 0;
     -moz-border-radius: 0 3px 3px 0;
@@ -109,7 +129,7 @@ a:hover {
 }
 
 #nav a:after {
-    background: rgba(255,255,255,.07);
+    background: rgba(255, 255, 255, .07);
     content: "";
     height: 25px;
     left: 0;
@@ -126,6 +146,7 @@ a:hover {
     -moz-box-shadow: inset 0 0 10px #111;
     box-shadow: inset 0 0 10px #111;
 }
+
 #nav span {
     position: relative;
 }
@@ -201,6 +222,7 @@ a:hover {
     -moz-border-radius: 0;
     border-radius: 0;
 }
+
 #nav ul ul li:last-child, #nav ul ul li:last-child a {
     -webkit-border-radius: 0 0 3px 3px;
     -moz-border-radius: 0 0 3px 3px;
@@ -221,7 +243,7 @@ a:hover {
 }
 
 #nav ul li ul li a:after {
-    background: rgba(0,0,0,.02);
+    background: rgba(0, 0, 0, .02);
     content: "";
     height: 22px;
     left: 0;
@@ -244,69 +266,79 @@ a:hover {
     position: relative;
     top: 1px;
 }
+
 /*Css dla tabeli*/
 table.darkTable {
     padding-top: 30px;
-  font-family: "Arial Black", Gadget, sans-serif;
-  border: 2px solid #222222;
-  background-color: #EEEEEE;
-  width: 80%;
-  height: 200%;
-  text-align: center;
-  border-collapse: collapse;
+    font-family: "Arial Black", Gadget, sans-serif;
+    border: 2px solid #222222;
+    background-color: #EEEEEE;
+    width: 80%;
+    height: 200%;
+    text-align: center;
+    border-collapse: collapse;
 }
+
 table.darkTable td, table.darkTable th {
-  border: 1px solid #00132C;
-  padding: 3px 2px;
+    border: 1px solid #00132C;
+    padding: 3px 2px;
 }
+
 table.darkTable tbody td {
-  font-size: 14px;
-  color: #1A1A1A;
+    font-size: 14px;
+    color: #1A1A1A;
 }
+
 table.darkTable tr:nth-child(even) {
-  background: #9B9C9E;
+    background: #9B9C9E;
 }
+
 table.darkTable thead {
-  background: #212121;
-  background: -moz-linear-gradient(top, #585858 0%, #373737 66%, #212121 100%);
-  background: -webkit-linear-gradient(top, #585858 0%, #373737 66%, #212121 100%);
-  background: linear-gradient(to bottom, #585858 0%, #373737 66%, #212121 100%);
-  border-bottom: 3px solid #222222;
+    background: #212121;
+    background: -moz-linear-gradient(top, #585858 0%, #373737 66%, #212121 100%);
+    background: -webkit-linear-gradient(top, #585858 0%, #373737 66%, #212121 100%);
+    background: linear-gradient(to bottom, #585858 0%, #373737 66%, #212121 100%);
+    border-bottom: 3px solid #222222;
 }
+
 table.darkTable thead th {
-  font-size: 12px;
-  font-weight: bold;
-  color: #E6E6E6;
-  text-align: center;
-  border-left: 2px solid #00132C;
+    font-size: 12px;
+    font-weight: bold;
+    color: #E6E6E6;
+    text-align: center;
+    border-left: 2px solid #00132C;
 }
+
 table.darkTable thead th:first-child {
-  border-left: none;
+    border-left: none;
 }
 
 table.darkTable tfoot {
-  font-size: 12px;
-  font-weight: bold;
-  color: #E6E6E6;
-  background: #000000;
-  background: -moz-linear-gradient(top, #404040 0%, #191919 66%, #000000 100%);
-  background: -webkit-linear-gradient(top, #404040 0%, #191919 66%, #000000 100%);
-  background: linear-gradient(to bottom, #404040 0%, #191919 66%, #000000 100%);
-  border-top: 1px solid #4A4A4A;
+    font-size: 12px;
+    font-weight: bold;
+    color: #E6E6E6;
+    background: #000000;
+    background: -moz-linear-gradient(top, #404040 0%, #191919 66%, #000000 100%);
+    background: -webkit-linear-gradient(top, #404040 0%, #191919 66%, #000000 100%);
+    background: linear-gradient(to bottom, #404040 0%, #191919 66%, #000000 100%);
+    border-top: 1px solid #4A4A4A;
 }
+
 table.darkTable tfoot td {
-  font-size: 12px;
+    font-size: 12px;
 }
 
 }
- .center {
-  margin-left: auto;
-  margin-right: auto;
+.center {
+    margin-left: auto;
+    margin-right: auto;
 }
+
 div.base {
     padding: 20px;
     padding-block-end: 20px;
-background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
- background-blend-mode: multiply,multiply;    height: available;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
+    background-blend-mode: multiply, multiply;
+    height: available;
     width: available;
 }

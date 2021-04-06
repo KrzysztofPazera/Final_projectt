@@ -1,5 +1,5 @@
 from django import forms
-from Workers.models_workers import Types, Workers
+from Workers.models import Types, Workers
 
 # Formularz dla typu pracownika
 class TypesForms(forms.ModelForm):

@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    {{ message }}
+
+    <div class="row">
+    {% for part_c in car_parts %}
+        <p>{{ part_c.category }}</p>
+                {% for part in car_parts %}
+    {% if part_c.category is part.category  %}
+
+
+            <div class="div_1 col-12">
+                <p>{{ part }} </p>
+                <p>Cena: PLN{{ part.price }}</p>
+                <a href="{% url 'add_to_cart' part.id %}" class="btn btn-warning">Dodaj do listy</a>
+                <a href="{% url 'sumary_list' %}" class="btn btn-warning">Podsumowanie</a>
+
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% endblock %}

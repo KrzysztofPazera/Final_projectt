@@ -34,6 +34,9 @@ class CarModel(models.Model):
         return f'{self.name}, {self.generacion}, {self.year}, {self.engine}'
     def get_detail_url(self):
         return f'{self.id}/edit_car/'
+    def sum_of_cars(self):
+
+        return None
 
 # Klasy częśći samochodowych
 # Klasa kategorii
@@ -51,9 +54,10 @@ class CarParts(models.Model):
     id_number_of_product = models.CharField(max_length=150, unique=True)
     category= models.ForeignKey(PartsCategory, on_delete=models.CASCADE)
     price = models.FloatField(default=0.00)
+    def __str__(self):
+        return f'{self.name},{self.price}'
     # def __str__(self):
-    #     return f'{self.name},{self.price}'
-
+    #     return self.name
     def show_name(self):
         return self.name
     def get_detail_url(self):

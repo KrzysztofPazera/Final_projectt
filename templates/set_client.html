@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    {{ message }}
+
+    <div class="row">
+        <div class="div_1 col-12">
+            <form method="post">
+                {% csrf_token %}
+                    <select name="client_selected">
+                                        {% for client in clients %}
+
+                        <option value="{{ client.id }}">{{ client }}</option>
+                        {% endfor %}
+                    </select>
+
+
+                <input type="submit" value="Dalej">
+            </form>
+        </div>
+
+
+    </div>
+{% endblock %}
