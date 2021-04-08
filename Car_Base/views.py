@@ -1,7 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView
 
 from Car_Base.forms import CarBrandForm, CarModelForm, CarPartsForm, PartsCategoryForm
 from Car_Base.models import CarBrand, CarModel, CarParts, PartsCategory
@@ -13,7 +14,7 @@ def index(request):
 
 
 # Widok dodawania marki samochodu
-class CarBrandFormView(CreateView):
+class CarBrandFormView(LoginRequiredMixin, CreateView):
     form_class = CarBrandForm
     template_name = 'form.html'
 
@@ -43,7 +44,7 @@ class CarBrandListView(View):
 
 
 # Widok dodawania modelu samochodu
-class AddCarModelFormView(CreateView):
+class AddCarModelFormView(LoginRequiredMixin, CreateView):
     form_class = CarModelForm
     template_name = 'form.html'
 
@@ -60,7 +61,7 @@ class CarModelListView(View):
 
 
 # Widok tworzący kategorie cześci
-class PartsCategoyFormView(CreateView):
+class PartsCategoyFormView(LoginRequiredMixin, CreateView):
     form_class = PartsCategoryForm
     template_name = 'form.html'
 
@@ -69,7 +70,7 @@ class PartsCategoyFormView(CreateView):
 
 
 # Widok tworzacy czesc samochodwa
-class CarPartsFormView(CreateView):
+class CarPartsFormView(LoginRequiredMixin, CreateView):
     form_class = CarPartsForm
     template_name = 'form.html'
 
@@ -80,7 +81,6 @@ class CarPartsFormView(CreateView):
 # Widok tworzacy liste kategorii
 class PartsCategoryListView(View):
     def get(self, request):
-
         objects = PartsCategory.objects.all()
 
         return render(request, 'category_parts_list.html', {'objects_list': objects})
@@ -104,7 +104,7 @@ class PartsDetailView(View):
 
 
 # Widok edytujący części
-class PartsDetailEditeView(View):
+class PartsDetailEditeView(LoginRequiredMixin, View):
 
     def get(self, request, id, id_c):
         parts = CarParts.objects.get(id=id)
@@ -119,13 +119,13 @@ class PartsDetailEditeView(View):
         car_id = request.POST.get('car_model')
         car = CarModel.objects.get(id=car_id)
         category_id = request.POST.get('category')
-        category = PartsCategory.objects.get(id= category_id)
-        price= request.POST.get('price')
+        category = PartsCategory.objects.get(id=category_id)
+        price = request.POST.get('price')
         parts.name = name
         parts.id_number_of_product = parts_id_num
         parts.category = category
         parts.car_model = car
-        parts.price=price
+        parts.price = price
         parts.save()
         return redirect(reverse('parts_category'))
 
@@ -139,7 +139,7 @@ class CarDetailView(View):
 
 
 # Widok do edytowania samochodów
-class CarEditView(View):
+class CarEditView(LoginRequiredMixin, View):
     def get(self, request, id, id_m):
         brands = CarBrand.objects.all()
         cars = CarModel.objects.get(id=id)

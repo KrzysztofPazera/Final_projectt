@@ -1,5 +1,7 @@
 import uuid
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -49,7 +51,7 @@ def filter(request):
 
     return qs
 
-
+@login_required
 def car_filter_view(request):
     qs = filter(request)
     context = {
@@ -63,7 +65,7 @@ def car_filter_view(request):
 
 
 
-class AddClientView(CreateView):
+class AddClientView(LoginRequiredMixin, CreateView):
     form_class = AddClientForm
     template_name = "form.html"
 
@@ -85,7 +87,7 @@ def add_client(request, **kwargs):
     cl =Order.objects.get(client=client)
     return redirect('repair_list')
 
-
+@login_required
 def repair_list_view(request):
     car_parts= CarParts.objects.all()
     client = Client.objects.all()
@@ -99,7 +101,7 @@ def repair_list_view(request):
     return render(request,'repair_list.html', context)
 def generate_order_id():
     return uuid
-
+@login_required
 def add_to_cart_view(request, **kwargs):
     order_it = OrderItem.objects.all()
     order_product = CarParts.objects.filter(id=kwargs.get('id')).first()
@@ -114,7 +116,7 @@ def add_to_cart_view(request, **kwargs):
 
 
     return redirect(reverse('car_filter'))
-
+@login_required
 def sumary_list(request):
     order_team = OrderItem.objects.all()
     context = {
