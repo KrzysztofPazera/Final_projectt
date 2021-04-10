@@ -4,7 +4,7 @@ from django.views import View
 from .forms import LoginForm, RegisterForm
 from django.contrib.auth import authenticate, login, logout
 
-
+# Widok logowania usera
 class LoginView(View):
 
     def get(self, request):
@@ -22,13 +22,13 @@ class LoginView(View):
             else:
                 return redirect('login')
 
-
+# Widok do wylogowania usera
 class LogOutView(View):
 
     def get(self, request):
         logout(request)
         return redirect('index')
-
+# Widok do rejestarcji usera
 class RegisterView(View):
     def get(self, request):
         form = RegisterForm()

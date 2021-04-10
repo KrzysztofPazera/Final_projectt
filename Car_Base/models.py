@@ -2,6 +2,7 @@ import datetime
 
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from Workers.models import Workers
 
 
 # Klasa marki samochodu
@@ -73,6 +74,7 @@ class CarParts(models.Model):
     category = models.ForeignKey(PartsCategory, on_delete=models.CASCADE)
     price = models.FloatField(default=0.00)
 
+
     def __str__(self):
         return f'{self.name},{self.price}'
 
@@ -83,3 +85,9 @@ class CarParts(models.Model):
 
     def get_detail_url(self):
         return f'{self.id}/edit_part/'
+
+class PartsAndWork(models.Model):
+    parts = models.ForeignKey(CarParts, on_delete=models.CASCADE)
+    works = models.ManyToManyField(Workers)
+    def __str__(self):
+        return f'{self.parts},{self.works}, cena:{self.works.price}'

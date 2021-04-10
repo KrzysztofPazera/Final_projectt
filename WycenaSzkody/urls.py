@@ -40,9 +40,14 @@ urlpatterns = [
     path('set_cleint/', views_repair_estimate.set_client, name='set_client'),
     path('add_client/<int:id>/', views_repair_estimate.add_client, name='add_client'),
     path('products_list/', views_repair_estimate.sumary_list, name='sumary_list'),
-    path('delete/<int:id>', views_repair_estimate.delete_from_list, name='delete_item'),
+    path('delete/<int:id>/', views_repair_estimate.delete_full_from_list, name='delete_item'),
+    path('delete_one/<int:id>/', views_repair_estimate.delete_from_list, name='delete_one_item'),
+    path('updata_one/<int:id>/', views_repair_estimate.updata_in_list, name='updata_list'),
     path('login/', views_account.LoginView.as_view(), name='login'),
     path('logout/', views_account.LogOutView.as_view(), name='logout'),
-    path('register/', views_account.RegisterView.as_view(), name='register')
+    path('register/', views_account.RegisterView.as_view(), name='register'),
+    path('add_parts_works/', views.AddPartsAndWorkFormView.as_view(), name='add_parts_works'),
+    path('parts_works_list/', views.PartsAndWorksListView.as_view(), name='parts_works_list'),
+
 ]
 

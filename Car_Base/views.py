@@ -4,8 +4,8 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import CreateView
 
-from Car_Base.forms import CarBrandForm, CarModelForm, CarPartsForm, PartsCategoryForm
-from Car_Base.models import CarBrand, CarModel, CarParts, PartsCategory
+from Car_Base.forms import CarBrandForm, CarModelForm, CarPartsForm, PartsCategoryForm, PartsAndWorkForm
+from Car_Base.models import CarBrand, CarModel, CarParts, PartsCategory, PartsAndWork
 
 
 # Strona glowna
@@ -202,3 +202,17 @@ class CarEditView(LoginRequiredMixin, View):
         cars.engine = engine
         cars.save()
         return redirect(reverse('car_brand_list'))
+
+#Widok laczacy montaz i czesci
+class AddPartsAndWorkFormView(LoginRequiredMixin,CreateView):
+    form_class = PartsAndWorkForm
+    template_name = 'form.html'
+    def get_success_url(self):
+        return reverse('parts_works_list')
+
+# Edycaja czesci i pracy
+class PartsAndWorksListView(View):
+    def get(self, request):
+        objects = PartsAndWork.objects.all()
+
+        return render(request, 'parts_and_workers_list.html', {'objects_list': objects})

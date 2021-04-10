@@ -1,5 +1,5 @@
 from django import forms
-from Car_Base.models import CarBrand, CarModel, PartsCategory, CarParts
+from Car_Base.models import CarBrand, CarModel, PartsCategory, CarParts, PartsAndWork
 
 
 # Form dla Marki samochodu
@@ -12,7 +12,7 @@ class CarBrandForm(forms.ModelForm):
 class CarModelForm(forms.ModelForm):
     class Meta:
         model = CarModel
-        fields = ['name', 'brand', 'year', 'generacion', 'engine']
+        fields = '__all__'
 
 
 #Form dla tworzenia kategorii części
@@ -26,4 +26,10 @@ class PartsCategoryForm(forms.ModelForm):
 class CarPartsForm(forms.ModelForm):
     class Meta:
         model= CarParts
-        fields = ['name','car_model', 'id_number_of_product', 'category', 'price']
+        fields = '__all__'
+
+# Form do laczenia czesci z montazem
+class PartsAndWorkForm(forms.ModelForm):
+    class Meta:
+        model = PartsAndWork
+        fields = '__all__'

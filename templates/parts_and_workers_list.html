@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="darkTable">
+        <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Model samochodu</th>
+            <th>Id produktu</th>
+            <th>Kategoria</th>
+            <th>Cena Netto(PLN)</th>
+            <th>Montaż</th>
+            <th>Cena montażu</th>
+
+        </tr>
+        </thead>
+        {% for q in objects_list %}
+
+
+            <tbody>
+            <tr>
+                <td>{{ q.parts.name }}</td>
+                <td>{{ q.parts.car_model.name }}</td>
+                <td>{{ q.parts.id_number_of_product }}</td>
+                <td>{{ q.parts.category }}</td>
+                <td>{{ q.parts.price }}</td>
+                <td>{{ q.works.all }}</td>
+{#                {% for w in q.works.all %}#}
+{#                    <td>{{ w.name }}</td>#}
+{#                    <td>{{ w.price }}</td>#}
+{#                {% endfor %}#}
+                {#                <td><a href="{{ part.get_detail_url }}" class="btn btn-warning">Edytuj</a></td>#}
+                {#                <td><a href="{% url 'delete_car_part' part.id %}" class="btn btn-warning">Usuń</a></td>#}
+            </tr>
+            </tbody>
+        {% endfor %}
+        </tr>
+    </table>
+    <input type=button value="Wstecz" onClick="javascript:history.go(-1);" class="btn btn-warning">
+{% endblock %}

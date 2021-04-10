@@ -54,7 +54,7 @@ def filter(request):
 @login_required
 def car_filter_view(request):
     car_parts_cat={ cat.name : CarParts.objects.filter(category=cat ) for cat in PartsCategory.objects.iterator()}
-    print(car_parts_cat)
+
     qs = filter(request)
     context = {
     'queryset': qs,
@@ -84,7 +84,7 @@ def set_client(request):
 # Dodawanie klienta (nie uzywane)
 def add_client(request, **kwargs):
     client = Client.objects.filter(id=kwargs.get('id')).first()
-    print(client)
+
     client_order = Order.objects.get_or_create(client=client, is_ordered=False)
     cl =Order.objects.get(client=client)
     return redirect('repair_list')
@@ -126,30 +126,57 @@ def add_to_cart_view(request, **kwargs):
 @login_required
 def sumary_list(request):
     order_team = OrderItem.objects.all()
-    sum_list = []
-    for o in OrderItem.objects.all():
-        s =o.product.price
-        sum_list.append(s)
-    sum_total =sum(sum_list)
     quantiti_list = []
     for qua in order_team:
         q= qua.quantiti
         quantiti_list.append(q)
     quantiti_total = sum(quantiti_list)
+    sum_list = []
+    for o in OrderItem.objects.all():
+        s =o.product.price
+        q =o.quantiti
+        suma=s*q
+        sum_list.append(suma)
+    sum_total =sum(sum_list)
+
     context = {
         'order_iteam':order_team,
         'sum_total':sum_total,
         'quantiti_total':quantiti_total
     }
     return render(request,'order_list.html', context)
-
-def delete_from_list(request, id):
+# Usuwanie calości z  listy
+def delete_full_from_list(request, id):
     item_to_delete = OrderItem.objects.filter(pk=id)
+
     if item_to_delete.exists():
         item_to_delete[0].delete()
 
     return redirect(reverse('sumary_list'))
 
+# Usuwanie jednej sztuki
+def delete_from_list(request, id):
+    item_to_delete = OrderItem.objects.get(pk=id)
+
+    quantiti= item_to_delete.quantiti
+    if quantiti >1:
+        item_to_delete.quantiti= quantiti-1
+        item_to_delete.save()
+    else:
+        item_to_delete.delete()
+
+
+
+
+    return redirect(reverse('sumary_list'))
+
+def updata_in_list(request, id):
+    item_to_updata = OrderItem.objects.get(pk=id)
+    quantiti= item_to_updata.quantiti
+    item_to_updata.quantiti= quantiti+1
+    item_to_updata.save()
+
+    return redirect(reverse('sumary_list'))
 # import json
 # class MyEncoder(JSONEncoder):
 #         def default(self, o):
