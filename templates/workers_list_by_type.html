@@ -20,7 +20,7 @@
     <td>{{ worker.type }}</td>
     <td>{{ worker.price }}</td>
     <td>{{ worker.work }}</td>
-    <td style="color: red"><a href="{{ worker.get_detail_url }}">Edycja</a></td>
+    <td style="color: red"><a href="{{ worker.get_detail_url }}"class="btn btn-warning">Edycja</a></td>
 
 
 </tr>
@@ -28,6 +28,6 @@
         {% endfor %}
 </tr>
 </table>
-        <input type=button value="Wstecz" onClick="javascript:history.go(-1);">
+        <input type=button value="Wstecz" onClick="javascript:history.go(-1);" class="btn btn-warning">
 
 {% endblock %}

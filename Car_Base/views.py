@@ -52,6 +52,48 @@ class AddCarModelFormView(LoginRequiredMixin, CreateView):
         return reverse('car_brand_list')
 
 
+# Widoko usuwania marki samochodu
+def delete_car_brand(request, id):
+    object = CarBrand.objects.get(id=id)
+    if request.method == 'GET':
+        return render(request, 'delete.html', {'objhect': object})
+    if request.method == 'POST':
+        object.delete()
+        return redirect('car_brand_list')
+
+
+# Widok usuwania modelu samochodu
+def delete_car_model(request, id):
+    object = CarModel.objects.get(id=id)
+    id_obj=object.brand.id
+    if request.method == 'GET':
+        return render(request, 'delete.html', {'object': object})
+    if request.method == 'POST':
+        object.delete()
+        return redirect('car_list_by_brand', id=id_obj)
+
+
+# Widok usuwania kategorii czesci
+def delete_part_category(request, id):
+    object = PartsCategory.objects.get(id=id)
+    if request.method == 'GET':
+        return render(request, 'delete.html', {'object': object})
+    if request.method == 'POST':
+        object.delete()
+        return redirect('parts_category')
+
+
+# Widok usuwania czesci sam.
+def delete_part(request, id):
+    object = CarParts.objects.get(id=id)
+    id_obj= object.category.id
+    if request.method == 'GET':
+        return render(request, 'delete.html', {'object': object})
+    if request.method == 'POST':
+        object.delete()
+        return redirect('parts_list', id=id_obj)
+
+
 # Widok pokazujacy wysztskie samochody danej marki
 class CarModelListView(View):
     def get(self, request, id):

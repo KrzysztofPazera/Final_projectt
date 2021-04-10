@@ -52,9 +52,6 @@
         </form>
 
 
-
-
-
         <table class="darkTable">
             <thead>
             <tr>
@@ -63,16 +60,16 @@
                 <th>Id produktu</th>
                 <th>Kategoria</th>
                 <th>Cena Netto(PLN)</th>
-
+                <th></th>
+                <th></th>
 
             </tr>
             </thead>
 
 
+            <tbody>
 
-                <tbody>
-
-                           {% for q in queryset %}
+            {% for q in queryset %}
                 <tr>
                     <td>{{ q.name }}</td>
                     <td>{{ q.car_model }}</td>
@@ -85,10 +82,9 @@
                     <td><a href="{% url 'sumary_list' %}" class="btn btn-warning">Podsumowanie</a></td>
 
                 </tr>
-                            {% endfor %}
-                </tbody>
-                <hr/>
-
+            {% endfor %}
+            </tbody>
+            <hr/>
 
 
     </main>

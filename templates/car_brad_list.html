@@ -5,7 +5,7 @@
 <tr>
     <th>Marka</th>
     <th>Ilość modeli</th>
-
+    <th></th>
 </tr>
 </thead>
 {% for obj in objects_list %}
@@ -13,16 +13,16 @@
 
 <tbody>
 <tr>
-    <td><a href="{{ obj.get_detail_url }}" >{{ obj }}</a></td>
+    <td><a href="{{ obj.get_detail_url }}" class="btn btn-warning">{{ obj }}</a></td>
 
-    <td>{{ q }}</td>
-
+    <td>{{ obj.sum_of_cars }}</td>
+    <td><a href="{% url 'delete_car_brand' obj.id %}" class="btn btn-warning">Usuń</a></td>
 </tr>
 </tbody>
         {% endfor %}
 </tr>
 </table>
-            <input type=button value="Wstecz" onClick="javascript:history.go(-1);">
+            <input type=button value="Wstecz" onClick="javascript:history.go(-1);" class="btn btn-warning">
 
 {#<a href="javascript:history.back()">Wstecz</a>#}
 {% endblock %}

@@ -39,7 +39,7 @@
                     {% endif %}
                 {% endfor %}
             </select></td>
-    <td><input type="text" name="price" value="{{ parts.price }}"></td>
+    <td><input type="text" name="price" value="{{ parts.price }}" ></td>
 
 
 </tr>
@@ -47,8 +47,8 @@
 
 </tr>
 </table>
-<input type="submit" value="Edytuj">
-            <input type=button value="Wstecz" onClick="javascript:history.go(-1);">
+<input type="submit" value="Edytuj"class="btn btn-warning">
+            <input type=button value="Wstecz" onClick="javascript:history.go(-1);" class="btn btn-warning">
 
     </form>
 {% endblock %}

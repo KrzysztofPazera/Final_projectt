@@ -2,11 +2,11 @@
 /* General
 /*============================*/
 .signed-in .portlet-login {
-  margin: 0px;
+    margin: 0px;
 }
 
 .signed-out .portlet-login {
-  margin: 10px;
+    margin: 10px;
 }
 
 .div_1 {
@@ -78,6 +78,7 @@ a:hover {
 /* Main Navigation
 /*============================*/
 #nav {
+
     height: 50px;
     line-height: 50px;
     width: 100%;
@@ -90,6 +91,7 @@ a:hover {
 }
 
 #nav li {
+
     background: #333;
     background-image: -o-linear-gradient(bottom, #222222 0%, #555555 100%);
     background-image: -moz-linear-gradient(bottom, #222222 0%, #555555 100%);
@@ -100,6 +102,7 @@ a:hover {
     float: left;
     position: relative;
     width: 20%;
+    z-index: 1;
 }
 
 #nav li:first-child, #nav li:first-child a {
@@ -328,7 +331,7 @@ table.darkTable tfoot td {
     font-size: 12px;
 }
 
-}
+
 .center {
     margin-left: auto;
     margin-right: auto;

@@ -5,26 +5,26 @@
         <tr>
             <th>Kategoria</th>
             <th>Ilość modeli</th>
-
+            <th></th>
         </tr>
         </thead>
 
 
-
-            <tbody>
-                    {% for obj in objects_list %}
+        <tbody>
+        {% for obj in objects_list %}
             <tr>
-                <td><a href="{{ obj.get_detail_url }}">{{ obj }}</a></td>
-
-                <td>{{ q }}</td>
+                <td><a href="{{ obj.get_detail_url }}" class="btn btn-warning">{{ obj }}</a></td>
+                <td>{{ obj.sum_of_parts }}</td>
+                <td><a href="{% url 'delete_car_category' obj.id %}" class="btn btn-warning">Usuń</a></td>
 
             </tr>
-                    {% endfor %}
-            </tbody>
+        {% endfor %}
+
+        </tbody>
 
         </tr>
     </table>
-            <input type=button value="Wstecz" onClick="javascript:history.go(-1);">
+    <input type=button value="Wstecz" onClick="javascript:history.go(-1);" class="btn btn-warning">
 
     {#<a href="javascript:history.back()">Wstecz</a>#}
 {% endblock %}

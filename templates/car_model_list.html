@@ -1,33 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
     <table class="darkTable">
-<thead>
-<tr>
-    <th>Model</th>
-    <th>Marka</th>
-    <th>Generacia</th>
-    <th>Rok produkcji</th>
-    <th>Silnik</th>
-    <th></th>
-</tr>
-</thead>
-{% for car in cars %}
+        <thead>
+        <tr>
+            <th>Model</th>
+            <th>Marka</th>
+            <th>Generacia</th>
+            <th>Rok produkcji</th>
+            <th>Silnik</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        {% for car in cars %}
 
 
-<tbody>
-<tr>
-    <td>{{ car.name }}</td>
-    <td>{{ car.brand }}</td>
-    <td>{{ car.generacion }}</td>
-    <td>{{ car.year }}</td>
-    <td>{{ car.engine }}</td>
-    <td><a href="{{ car.get_detail_url }}">Edytuj</a></td>
+            <tbody>
+            <tr>
+                <td>{{ car.name }}</td>
+                <td>{{ car.brand }}</td>
+                <td>{{ car.generacion }}</td>
+                <td>{{ car.year }}</td>
+                <td>{{ car.engine }}</td>
+                <td><a href="{% url 'delete_car_model' car.id %}" class="btn btn-warning">Usuń</a></td>
 
-</tr>
-</tbody>
+                <td><a href="{{ car.get_detail_url }}" class="btn btn-warning">Edytuj</a></td>
+
+            </tr>
+            </tbody>
         {% endfor %}
-</tr>
-</table>
-        <input type=button value="Wstecz" onClick="javascript:history.go(-1);">
+        </tr>
+    </table>
+    <input type=button value="Wstecz" onClick="javascript:history.go(-1);" class="btn btn-warning">
 
 {% endblock %}

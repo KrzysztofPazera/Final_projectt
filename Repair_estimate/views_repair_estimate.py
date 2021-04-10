@@ -17,11 +17,11 @@ import datetime
 from random import random
 import string
 
-
+# Sprawdzanie czy dane z form sa prawidlowe
 def is_valid_query(param):
     return param != '' and param is not None
 
-
+# Filtorwanie wynikow
 def filter(request):
     qs = CarParts.objects.all()
     parts_category = PartsCategory.objects.all()
@@ -50,20 +50,22 @@ def filter(request):
 
 
     return qs
-
+# Lista czesc z filtorwaniem
 @login_required
 def car_filter_view(request):
+    car_parts_cat={ cat.name : CarParts.objects.filter(category=cat ) for cat in PartsCategory.objects.iterator()}
+    print(car_parts_cat)
     qs = filter(request)
     context = {
     'queryset': qs,
     'car_brands': CarBrand.objects.all(),
     'car_model': CarModel.objects.all(),
     'part_category': PartsCategory.objects.all(),
-
+    'car_parts_cat':car_parts_cat
     }
     return render(request, "filter_form.html", context)
 
-
+# Dodawanie klienta (nie uzywane)
 
 class AddClientView(LoginRequiredMixin, CreateView):
     form_class = AddClientForm
@@ -71,7 +73,7 @@ class AddClientView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('index')
-
+# Wybieranie klienta( nie uzywane)
 def set_client(request):
     client = Client.objects.all()
 
@@ -79,14 +81,14 @@ def set_client(request):
         'clients':client
     }
     return render(request, 'set_client.html', context)
-
+# Dodawanie klienta (nie uzywane)
 def add_client(request, **kwargs):
     client = Client.objects.filter(id=kwargs.get('id')).first()
     print(client)
     client_order = Order.objects.get_or_create(client=client, is_ordered=False)
     cl =Order.objects.get(client=client)
     return redirect('repair_list')
-
+# Lista napraw (nie uzywane)
 @login_required
 def repair_list_view(request):
     car_parts= CarParts.objects.all()
@@ -94,17 +96,20 @@ def repair_list_view(request):
 
     context ={
         'car_parts':car_parts,
-        'clients':client
-
+        'clients':client,
+        'car_parts_cat':car_parts_cat,
     }
 
     return render(request,'repair_list.html', context)
 def generate_order_id():
     return uuid
+
+# Dodawanie do listy kosztow (nie uzywane)
 @login_required
 def add_to_cart_view(request, **kwargs):
     order_it = OrderItem.objects.all()
     order_product = CarParts.objects.filter(id=kwargs.get('id')).first()
+
     try:
         part =OrderItem.objects.get(product=order_product)
         quantiti= part.quantiti
@@ -116,11 +121,25 @@ def add_to_cart_view(request, **kwargs):
 
 
     return redirect(reverse('car_filter'))
+
+# Widok z lista kosztow
 @login_required
 def sumary_list(request):
     order_team = OrderItem.objects.all()
+    sum_list = []
+    for o in OrderItem.objects.all():
+        s =o.product.price
+        sum_list.append(s)
+    sum_total =sum(sum_list)
+    quantiti_list = []
+    for qua in order_team:
+        q= qua.quantiti
+        quantiti_list.append(q)
+    quantiti_total = sum(quantiti_list)
     context = {
-        'order_iteam':order_team
+        'order_iteam':order_team,
+        'sum_total':sum_total,
+        'quantiti_total':quantiti_total
     }
     return render(request,'order_list.html', context)
 

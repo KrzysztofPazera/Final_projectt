@@ -8,6 +8,8 @@ class Types(models.Model):
         return self.name
     def get_detail_url(self):
         return f'{self.id}/'
+    def sum_of_parts(self):
+        return Workers.objects.filter(type=self).count()
 
 # Model pracownika
 class Workers(models.Model):

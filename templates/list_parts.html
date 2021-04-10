@@ -1,35 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
     <table class="darkTable">
-<thead>
-<tr>
-    <th>Nazwa</th>
-    <th>Model samochodu</th>
-    <th>Id produktu</th>
-    <th>Kategoria</th>
-    <th>Cena Netto(PLN)</th>
-    <th></th>
+        <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Model samochodu</th>
+            <th>Id produktu</th>
+            <th>Kategoria</th>
+            <th>Cena Netto(PLN)</th>
+            <th></th>
+            <th></th>
 
-</tr>
-</thead>
-{% for part in objects_list %}
+        </tr>
+        </thead>
+        {% for part in objects_list %}
 
 
-<tbody>
-<tr>
-    <td>{{ part.name }}</td>
-    <td>{{ part.car_model }}</td>
-    <td>{{ part.id_number_of_product }}</td>
-    <td>{{ part.category }}</td>
-    <td>{{ part.price }}</td>
-    <td><a href="{{ part.get_detail_url }}">Edytuj</a></td>
-
-</tr>
-</tbody>
+            <tbody>
+            <tr>
+                <td>{{ part.name }}</td>
+                <td>{{ part.car_model }}</td>
+                <td>{{ part.id_number_of_product }}</td>
+                <td>{{ part.category }}</td>
+                <td>{{ part.price }}</td>
+                <td><a href="{{ part.get_detail_url }}" class="btn btn-warning">Edytuj</a></td>
+                <td><a href="{% url 'delete_car_part' part.id %}" class="btn btn-warning">Usuń</a></td>
+            </tr>
+            </tbody>
         {% endfor %}
-</tr>
-</table>
-            <input type=button value="Wstecz" onClick="javascript:history.go(-1);">
+        </tr>
+    </table>
+    <input type=button value="Wstecz" onClick="javascript:history.go(-1);" class="btn btn-warning">
 
 
 {% endblock %}
