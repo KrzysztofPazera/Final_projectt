@@ -107,6 +107,7 @@ def generate_order_id():
 # Dodawanie do listy kosztow (nie uzywane)
 @login_required
 def add_to_cart_view(request, **kwargs):
+    '''Dodawanie do listy kosztow (nie uzywane)'''
     order_it = OrderItem.objects.all()
     order_product = CarParts.objects.filter(id=kwargs.get('id')).first()
 

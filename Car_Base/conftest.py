@@ -4,6 +4,11 @@ from django.contrib.auth.models import User, Permission
 
 from Car_Base.models import CarBrand, CarModel, PartsCategory, CarParts
 
+@pytest.fixture(autouse=True)
+def _use_static_files_storage(settings):
+    settings.STATICFILES_STORAGE = (
+        "django.contrib.staticfiles.storage.StaticFilesStorage"
+    )
 
 @pytest.fixture
 def client():

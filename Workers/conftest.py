@@ -5,6 +5,12 @@ from django.contrib.auth.models import User, Permission
 from .models import Types, Workers
 
 
+@pytest.fixture(autouse=True)
+def _use_static_files_storage(settings):
+    settings.STATICFILES_STORAGE = (
+        "django.contrib.staticfiles.storage.StaticFilesStorage"
+    )
+
 @pytest.fixture
 def client():
     c = Client()

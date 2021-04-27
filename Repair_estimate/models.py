@@ -40,8 +40,8 @@ class OrderItem(models.Model):
 
     def get_cart_items(self):
         return self.product
-    def get_quantiti_total(self):
-        return sum(q for q in self.quantiti)
+    # def get_quantiti_total(self):
+    #     return sum(q for q in self.quantiti)
         # return sum(qs for qs in self.quantiti.all)
 
     def get_cart_total(self):

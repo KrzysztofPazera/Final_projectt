@@ -12,21 +12,25 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
+import django_on_heroku
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8x&=!9a_stuccygzbb1k(aw1grhag1%s#j=i-o($xcfzwsd)$!'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.getenv('DEBUG', False))
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -36,18 +40,19 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'Repair_estimate',
     'Car_Base',
     'Workers',
     'Account',
 
-
-
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,21 +82,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'WycenaSzkody.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wycenanaprawy',
-        'HOST': 'localhost',
-        'PORT': 5432,
-        'USER': 'postgres',
-        'PASSWORD': 'coderslab'
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DATABASE_NAME"),
+        "USER": os.getenv("DATABASE_USER"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST": os.getenv("DATABASE_HOST"),
+        "PORT": int(os.getenv("DATABASE_PORT", -1)),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -110,7 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -132,3 +134,12 @@ LOGIN_URL = '/login/'
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = os.getenv('MEDIA_URL', default='media/')
+STATIC_ROOT = BASE_DIR / 'staticfiles/'
+# STATICFILES_DIRS = [
+#     BASE_DIR / "Car_Base/static",
+# ]
+MEDIA_ROOT = '/media/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_on_heroku.settings(locals())
